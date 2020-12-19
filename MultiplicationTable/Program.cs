@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 
 namespace MultiplicationTable
@@ -9,6 +10,7 @@ namespace MultiplicationTable
         private const int RightAnswearsCount = 15;
         private static int TimeForAnswearImMillis = 5000;
         private static readonly Random _random = new Random();
+        private static HashSet<int> _hashSet = new HashSet<int>();
 
         static void Main(string[] args)
         {            
@@ -18,11 +20,17 @@ namespace MultiplicationTable
                 var firstDigit = _random.Next(2, 10);
                 var secondDigit = _random.Next(2, 10);
                 var rightAnswear = firstDigit * secondDigit;
+                if (_hashSet.Contains(rightAnswear))
+                {
+                    Console.WriteLine(string.Join("", new int[] { firstDigit, secondDigit }));
+                    continue;
+                }                    
+
+                _hashSet.Add(rightAnswear);                
                 var message = $"{firstDigit} * {secondDigit} = ";
                 Console.Write(message);
 
                 var res = Reader.ReadLine(TimeForAnswearImMillis);
-                Console.WriteLine(res);
                 if (int.TryParse(res, out int userAnswear) && userAnswear == rightAnswear)
                 {
                     counter++;
@@ -31,6 +39,7 @@ namespace MultiplicationTable
                 }  
                 
                 counter = 0;
+                _hashSet.Clear();
                 var fullAnswear = $"{firstDigit} * {secondDigit} = {rightAnswear}";
 
                 if (res == null)
