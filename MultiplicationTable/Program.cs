@@ -8,52 +8,43 @@ namespace MultiplicationTable
     public class Program
     {
         private const int RightAnswearsCount = 15;
-        private static int TimeForAnswearImMillis = 5000;
-        private static readonly Random _random = new Random();
-        private static HashSet<int> _hashSet = new HashSet<int>();
+        private const int TimeForAnswearImMillis = 5000;
+        private static int _exampleCounter = 0;
 
-        static void Main(string[] args)
+        static void Main()
         {            
-            var counter = 0;
             do
             {
-                var firstDigit = _random.Next(2, 10);
-                var secondDigit = _random.Next(2, 10);
-                var rightAnswear = firstDigit * secondDigit;
-                if (_hashSet.Contains(rightAnswear))
-                {
-                    Console.WriteLine(string.Join("", new int[] { firstDigit, secondDigit }));
-                    continue;
-                }                    
-
-                _hashSet.Add(rightAnswear);                
-                var message = $"{firstDigit} * {secondDigit} = ";
-                Console.Write(message);
-
-                var res = Reader.ReadLine(TimeForAnswearImMillis);
-                if (int.TryParse(res, out int userAnswear) && userAnswear == rightAnswear)
-                {
-                    counter++;
-                    Console.WriteLine($"Правильно! Ещё нужно {RightAnswearsCount - counter} правильных ответов.");
-                    continue;
-                }  
-                
-                counter = 0;
-                _hashSet.Clear();
-                var fullAnswear = $"{firstDigit} * {secondDigit} = {rightAnswear}";
-
-                if (res == null)
-                {
-                    Console.WriteLine($"\nВремя вышло! {fullAnswear}");
-                    continue;
-                }
-                                      
-                Console.WriteLine($"Ошибка! {fullAnswear}");
+                var example = ExampleCreator.Create();                
+                Console.Write(example.ToStringWithoutAnswear());
+                CheckUserAnswear(example);
             }
-            while (counter != RightAnswearsCount);
+            while (_exampleCounter != RightAnswearsCount);
 
             Console.WriteLine("Победа!");
             Console.ReadKey();
+        }
+
+        private static void CheckUserAnswear(Example example)
+        {
+            var res = Reader.ReadLine(TimeForAnswearImMillis);
+            if (int.TryParse(res, out int userAnswear) && userAnswear == example.RightAnswear)
+            {
+                _exampleCounter++;
+                Console.WriteLine($"Правильно! Ещё нужно {RightAnswearsCount - _exampleCounter} правильных ответов.");
+                return;
+            }
+
+            _exampleCounter = 0;
+            ExampleCreator.Clear();
+
+            if (res == null)
+            {
+                Console.WriteLine($"\nВремя вышло! {example}");
+                return;
+            }
+
+            Console.WriteLine($"Ошибка! {example}");
         }
     }
 
