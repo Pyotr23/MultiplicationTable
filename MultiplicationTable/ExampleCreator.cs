@@ -1,55 +1,58 @@
-﻿using MultiplicationTable.Examples;
+﻿using MultiplicationTable.MathExample.Factory;
+using MultiplicationTable.MathExample.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MultiplicationTable
 {
-    public static class ExampleCreator
+    public class ExampleCreator
     {
-        private static readonly Random _random = new Random();
-        private static readonly HashSet<int> _hashSet = new HashSet<int>();
+        private readonly Random _random = new Random();
+        private readonly HashSet<int> _hashSet = new HashSet<int>();
+        private readonly IExampleFactory _exampleFactory;
+        private readonly ExampleStorage _exampleStorage;
 
-        public static Example Create(Operator exampleType)
+        public ExampleCreator(Operator exampleType)
+        {
+            switch (exampleType)
+            {
+                case Operator.Multiply:
+                    _exampleFactory = new MultiplyExampleFactory();
+                    break;
+            }
+            _exampleStorage = _exampleFactory.CreateExampleStorage();
+        }
+
+        public Example Create()
         { 
             while (true)
             {
                 var firstDigit = _random.Next(2, 10);
                 var secondDigit = _random.Next(2, 10);
 
-                switch (exampleType)
-                {
-                    case Operator.Multiply:
-                        var rightAnswear = firstDigit * secondDigit;
-                        if (_hashSet.Contains(rightAnswear))
-                            continue;
+                
+                if (_exampleStorage.Contains(firstDigit, secondDigit))
+                    continue;
 
-                        _hashSet.Add(rightAnswear);
-                        return new MultiplyExample
-                        {
-                            FirstDigit = firstDigit,
-                            SecondDigit = secondDigit
-                        };
-                    case Operator.Division:
-                        var divisible = firstDigit * secondDigit;
-                        if (_hashSet.Contains(divisible))
-                            continue;
+                _exampleStorage.Add(firstDigit, secondDigit);
+                return _exampleFactory.CreateExample(firstDigit, secondDigit);                        
+                    //case Operator.Division:
+                    //    var divisible = firstDigit * secondDigit;
+                    //    if (_hashSet.Contains(divisible))
+                    //        continue;
 
-                        _hashSet.Add(divisible);
-                        return new DivisionExample
-                        {
-                            FirstDigit = divisible,
-                            SecondDigit = secondDigit
-                        };
-                    default:
-                        return null;
-                }                
+                    //    _hashSet.Add(divisible);
+                    //    return new DivisionExample
+                    //    {
+                    //        FirstDigit = divisible,
+                    //        SecondDigit = secondDigit
+                    //    };                                  
             }            
         }
 
-        public static void Clear()
+        public void ClearStorage()
         {
-            _hashSet.Clear();
+            _exampleStorage.Clear();
         }
     }
 }

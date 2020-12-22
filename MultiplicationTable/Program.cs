@@ -1,4 +1,4 @@
-﻿using MultiplicationTable.Examples;
+﻿using MultiplicationTable.MathExample.Models;
 using System;
 
 namespace MultiplicationTable
@@ -8,12 +8,14 @@ namespace MultiplicationTable
     {        
         private static int _exampleCounter = 0;
         private static readonly DurationMeter _durationMeter = new DurationMeter();
+        private static ExampleCreator _exampleCreator;
 
         static void Main()
-        {            
+        {
+            _exampleCreator = new ExampleCreator(Operator.Multiply);
             do
             {
-                var example = ExampleCreator.Create(Operator.Division);                
+                var example = _exampleCreator.Create();                
                 Console.Write(example.ToStringWithoutAnswear());
                 CheckUserAnswear(example);
             }
@@ -35,7 +37,7 @@ namespace MultiplicationTable
             }
 
             _exampleCounter = 0;
-            ExampleCreator.Clear();
+            _exampleCreator.ClearStorage();
 
             if (measure.OperationResult == null)
             {
