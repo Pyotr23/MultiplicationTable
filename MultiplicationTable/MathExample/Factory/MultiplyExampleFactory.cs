@@ -9,7 +9,7 @@ namespace MultiplicationTable.MathExample.Factory
             return new MultiplyExample(firstDigit, secondDigit);
         }
 
-        public ExampleStorage CreateExampleStorage()
+        public IExampleStorage CreateExampleStorage()
         {
             return new MultiplyExampleStorage();
         }

@@ -8,9 +8,8 @@ namespace MultiplicationTable
     public class ExampleCreator
     {
         private readonly Random _random = new Random();
-        private readonly HashSet<int> _hashSet = new HashSet<int>();
         private readonly IExampleFactory _exampleFactory;
-        private readonly ExampleStorage _exampleStorage;
+        private readonly IExampleStorage _exampleStorage;
 
         public ExampleCreator(Operator exampleType)
         {

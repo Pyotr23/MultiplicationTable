@@ -1,9 +1,9 @@
 ﻿namespace MultiplicationTable.MathExample.Models
 {
-    public abstract class ExampleStorage
+    public interface IExampleStorage
     {
-        public abstract bool Contains(int firstDigit, int secondDigit);
-        public abstract void Add(int firstDigit, int secondDigit);
-        public abstract void Clear();
+        public bool Contains(int firstDigit, int secondDigit);
+        public void Add(int firstDigit, int secondDigit);
+        public void Clear();
     }
 }
