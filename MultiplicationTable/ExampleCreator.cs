@@ -18,6 +18,9 @@ namespace MultiplicationTable
                 case Operator.Multiply:
                     _exampleFactory = new MultiplyExampleFactory();
                     break;
+                case Operator.Division:
+                    _exampleFactory = new DivisionExampleFactory();
+                    break;
             }
             _exampleStorage = _exampleFactory.CreateExampleStorage();
         }

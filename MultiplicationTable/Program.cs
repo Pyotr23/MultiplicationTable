@@ -12,7 +12,7 @@ namespace MultiplicationTable
 
         static void Main()
         {
-            _exampleCreator = new ExampleCreator(Operator.Multiply);
+            _exampleCreator = new ExampleCreator(Operator.Division);
             do
             {
                 var example = _exampleCreator.Create();                
