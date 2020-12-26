@@ -3,24 +3,14 @@ using System.Collections.Generic;
 
 namespace MultiplicationTable.MathExample.Models
 {
-    public class MultiplyExampleStorage : IExampleStorage
+    public class MultiplyExampleCreator : ExampleStorage, IExampleCreator
     {
-        /// <summary>
-        ///     Хеш-таблица для хранения кортежей со множителями
-        /// </summary>
-        private readonly HashSet<Tuple<int, int>> _hashSet = new HashSet<Tuple<int, int>>();
-
         private readonly Random _random = new Random();
 
-        public void Add(int firstDigit, int secondDigit)
+        public override void Add(int firstDigit, int secondDigit)
         {
-            _hashSet.Add(new Tuple<int, int>(firstDigit, secondDigit));
+            base.Add(firstDigit, secondDigit);
             _hashSet.Add(new Tuple<int, int>(secondDigit, firstDigit));
-        }
-
-        public bool Contains(int firstDigit, int secondDigit)
-        {
-            return _hashSet.Contains(new Tuple<int, int>(firstDigit, secondDigit));
         }
 
         public void Clear()

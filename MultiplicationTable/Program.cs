@@ -8,14 +8,14 @@ namespace MultiplicationTable
     {        
         private static int _exampleCounter = 0;
         private static readonly DurationMeter _durationMeter = new DurationMeter();
-        private static IExampleStorage _exampleStorage;
+        private static IExampleCreator _exampleCreator;
 
         static void Main()
         {
-            _exampleStorage = new MixedExampleStorage();            
+            _exampleCreator = new MixedExampleCreator();            
             do
             {
-                var example = _exampleStorage.CreateExample();                
+                var example = _exampleCreator.CreateExample();                
                 Console.Write(example.ToStringWithoutAnswear());
                 CheckUserAnswear(example);
             }
@@ -37,7 +37,7 @@ namespace MultiplicationTable
             }
 
             _exampleCounter = 0;
-            _exampleStorage.Clear();
+            _exampleCreator.Clear();
 
             if (measure.OperationResult == null)
             {
