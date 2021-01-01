@@ -11,5 +11,6 @@ namespace MultiplicationTable
             { Operator.Multiply, "*" },
             { Operator.Division, ":"}
         };
+        public static readonly char[] ModeNumbers = { '0', '1', '2' };
     }
 }

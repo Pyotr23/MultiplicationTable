@@ -13,7 +13,7 @@ namespace MultiplicationTable
 
         static void Main()
         {
-            ChooseMode();
+            SetExampleCreator(GetModeNumber());
 
             do
             {
@@ -27,39 +27,46 @@ namespace MultiplicationTable
             Console.ReadKey();
         }
 
-        
-
-        private static void ChooseMode()
+        /// <summary>
+        ///     Получить цифру, обозначающую режим проверки знаний.
+        /// </summary>
+        /// <returns> Введённый пользователем режим типа char </returns>
+        private static char GetModeNumber()
         {
             bool isModeSelectionOver;
+            char readKey;
             do
             {
-                isModeSelectionOver = true;
                 Console.WriteLine("Выберите тип примеров:");
                 Console.WriteLine("\t0 - умножение\n\t1 - деление\n\t2 - и умножение, и деление");
-                var readKey = Console.ReadKey().KeyChar;
+                readKey = Console.ReadKey().KeyChar;
                 Console.WriteLine();
-                switch (readKey)
-                {
-                    case '0':
-                        _exampleCreator = new MultiplyExampleCreator();
-                        break;
-                    case '1':
-                        _exampleCreator = new DivisionExampleCreator();
-                        break;
-                    case '2':
-                        _exampleCreator = new MixedExampleCreator();
-                        break;
-                    default:
-                        Console.Clear();
-                        Console.WriteLine("Тип примеров не выбран.");
-                        isModeSelectionOver = false;
-                        break;
-                }
+                var modeNumbers = new char[] { '0', '1', '2' };
+                isModeSelectionOver = modeNumbers.Contains(readKey);
+                Console.Clear();
+                if (!isModeSelectionOver)
+                    Console.WriteLine("Тип примеров не выбран.");
             }
             while (!isModeSelectionOver);
-            Console.Clear();
+           
+            return readKey;
         }
+
+        private static void SetExampleCreator(char mode)
+        {
+            switch (mode)
+            {
+                case '0':
+                    _exampleCreator = new MultiplyExampleCreator();
+                    break;
+                case '1':
+                    _exampleCreator = new DivisionExampleCreator();
+                    break;
+                case '2':
+                    _exampleCreator = new MixedExampleCreator();
+                    break;
+            }
+        }        
 
         /// <summary>
         ///     Получить сформированный пример. 
