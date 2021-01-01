@@ -15,7 +15,7 @@ namespace MultiplicationTable
             _exampleCreator = new MixedExampleCreator();            
             do
             {
-                var example = _exampleCreator.CreateExample();                
+                var example = GetExampleWithValue();                           
                 Console.Write(example.ToStringWithoutAnswear());
                 CheckUserAnswear(example);
             }
@@ -25,6 +25,26 @@ namespace MultiplicationTable
             Console.ReadKey();
         }
 
+        /// <summary>
+        ///     Получить сформированный пример. 
+        /// </summary>
+        /// <returns> Непустой пример </returns>
+        private static Example GetExampleWithValue()
+        {
+            Example example;
+            do
+            {
+                example = _exampleCreator.CreateExample();
+            }
+            while (example == null);
+
+            return example;
+        }
+
+        /// <summary>
+        ///     Проверить ответ пользователя на пример.
+        /// </summary>
+        /// <param name="example"> Пример </param>
         private static void CheckUserAnswear(Example example)
         {
             static string operation() => ConsoleReader.ReadLine(Constants.TimeForAnswearInMillis);

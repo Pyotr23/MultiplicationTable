@@ -20,18 +20,15 @@ namespace MultiplicationTable.MathExample.Models
 
         public Example CreateExample()
         {
-            while (true)
-            {
-                var firstDigit = _random.Next(2, 10);
-                var secondDigit = _random.Next(2, 10);
+            var firstDigit = _random.Next(2, 10);
+            var secondDigit = _random.Next(2, 10);
 
-                if (Contains(firstDigit, secondDigit))
-                    continue;
+            if (Contains(firstDigit, secondDigit))
+                return null;
 
-                Add(firstDigit, secondDigit);
+            Add(firstDigit, secondDigit);
 
-                return new MultiplyExample(firstDigit, secondDigit);                                                
-            }
+            return new MultiplyExample(firstDigit, secondDigit);
         }
     }
 }

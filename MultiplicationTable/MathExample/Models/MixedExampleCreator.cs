@@ -19,7 +19,8 @@ namespace MultiplicationTable.MathExample.Models
         public Example CreateExample()
         {
             var index = _random.Next(0, 2);
-            return _exampleCreators[index].CreateExample();
+            var example = _exampleCreators[index].CreateExample();
+            return example ?? _exampleCreators[1 - index].CreateExample();
         }
     }
 }
