@@ -30,7 +30,7 @@ namespace MultiplicationTable
         /// <summary>
         ///     Получить цифру, обозначающую режим проверки знаний.
         /// </summary>
-        /// <returns> Введённый пользователем режим </returns>
+        /// <returns> Введённый пользователем режим типа char </returns>
         private static char GetModeNumber()
         {
             bool isModeSelectionOver;
@@ -40,8 +40,9 @@ namespace MultiplicationTable
                 Console.WriteLine("Выберите тип примеров:");
                 Console.WriteLine("\t0 - умножение\n\t1 - деление\n\t2 - и умножение, и деление");
                 readKey = Console.ReadKey().KeyChar;
-                Console.WriteLine();                
-                isModeSelectionOver = Constants.ModeNumbers.Contains(readKey);
+                Console.WriteLine();
+                var modeNumbers = new char[] { '0', '1', '2' };
+                isModeSelectionOver = modeNumbers.Contains(readKey);
                 Console.Clear();
                 if (!isModeSelectionOver)
                     Console.WriteLine("Тип примеров не выбран.");
@@ -51,12 +52,8 @@ namespace MultiplicationTable
             return readKey;
         }
 
-        /// <summary>
-        ///     Установить класс, создающий примеры.
-        /// </summary>
-        /// <param name="mode"> Режим работы программы </param>
         private static void SetExampleCreator(char mode)
-        {            
+        {
             switch (mode)
             {
                 case '0':
@@ -93,7 +90,7 @@ namespace MultiplicationTable
         /// <param name="example"> Пример </param>
         private static void CheckUserAnswear(Example example)
         {
-            static string operation() => WaitConsoleReader.ReadLine(Constants.TimeForAnswearInMillis);
+            static string operation() => ConsoleReader.ReadLine(Constants.TimeForAnswearInMillis);
             var measure = _durationMeter.Measure(operation);
             if (int.TryParse(measure.OperationResult, out int userAnswear) && userAnswear == example.RightAnswear)
             {
