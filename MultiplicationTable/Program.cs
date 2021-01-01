@@ -1,5 +1,6 @@
 ﻿using MultiplicationTable.MathExample.Models;
 using System;
+using System.Linq;
 
 namespace MultiplicationTable
 {
@@ -12,10 +13,11 @@ namespace MultiplicationTable
 
         static void Main()
         {
-            _exampleCreator = new MixedExampleCreator();            
+            ChooseMode();
+
             do
             {
-                var example = GetExampleWithValue();                           
+                var example = GetExampleWithValue();
                 Console.Write(example.ToStringWithoutAnswear());
                 CheckUserAnswear(example);
             }
@@ -23,6 +25,40 @@ namespace MultiplicationTable
 
             Console.WriteLine("Победа!");
             Console.ReadKey();
+        }
+
+        
+
+        private static void ChooseMode()
+        {
+            bool isModeSelectionOver;
+            do
+            {
+                isModeSelectionOver = true;
+                Console.WriteLine("Выберите тип примеров:");
+                Console.WriteLine("\t0 - умножение\n\t1 - деление\n\t2 - и умножение, и деление");
+                var readKey = Console.ReadKey().KeyChar;
+                Console.WriteLine();
+                switch (readKey)
+                {
+                    case '0':
+                        _exampleCreator = new MultiplyExampleCreator();
+                        break;
+                    case '1':
+                        _exampleCreator = new DivisionExampleCreator();
+                        break;
+                    case '2':
+                        _exampleCreator = new MixedExampleCreator();
+                        break;
+                    default:
+                        Console.Clear();
+                        Console.WriteLine("Тип примеров не выбран.");
+                        isModeSelectionOver = false;
+                        break;
+                }
+            }
+            while (!isModeSelectionOver);
+            Console.Clear();
         }
 
         /// <summary>
