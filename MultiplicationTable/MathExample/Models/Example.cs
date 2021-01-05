@@ -5,7 +5,7 @@
         public int FirstDigit { get; private set; }
         public int SecondDigit { get; private set; }
         abstract public Operator Operator { get; }
-        abstract public int RightAnswear { get; }
+        abstract public int RightAnswer { get; }
 
         public Example(int firstDigit, int secondDigit)
         {
@@ -15,10 +15,10 @@
 
         public override string ToString()
         {            
-            return $"{ToStringWithoutAnswear()}{RightAnswear}";
+            return $"{ToStringWithoutAnswer()}{RightAnswer}";
         }
 
-        public string ToStringWithoutAnswear()
+        public string ToStringWithoutAnswer()
         {            
             return $"{FirstDigit} {Constants.OperatorSymbol[Operator]} {SecondDigit} = ";
         }

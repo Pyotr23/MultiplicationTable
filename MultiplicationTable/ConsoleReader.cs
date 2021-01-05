@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace MultiplicationTable
 {
@@ -13,11 +14,7 @@ namespace MultiplicationTable
         {
             _getInput = new AutoResetEvent(false);
             _gotInput = new AutoResetEvent(false);
-            var thread = new Thread(Read)
-            {
-                IsBackground = true
-            };
-            thread.Start();
+            Task.Run(Read);            
         }
 
         private static void Read()

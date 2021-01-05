@@ -8,6 +8,6 @@
 
         public override Operator Operator => Operator.Division;
 
-        public override int RightAnswear => FirstDigit / SecondDigit;
+        public override int RightAnswer => FirstDigit / SecondDigit;
     }
 }

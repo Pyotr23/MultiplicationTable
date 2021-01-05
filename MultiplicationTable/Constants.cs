@@ -4,8 +4,8 @@ namespace MultiplicationTable
 {
     public static class Constants
     {
-        public const int RightAnswearsCount = 15;
-        public const int TimeForAnswearInMillis = 14000;
+        public const int RightAnswersCount = 15;
+        public const int TimeForAnswerInMillis = 14000;
         public static readonly Dictionary<Operator, string> OperatorSymbol = new Dictionary<Operator, string>
         {
             { Operator.Multiply, "*" },

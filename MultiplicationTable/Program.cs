@@ -18,10 +18,10 @@ namespace MultiplicationTable
             do
             {
                 var example = GetExampleWithValue();
-                Console.Write(example.ToStringWithoutAnswear());
-                CheckUserAnswear(example);
+                Console.Write(example.ToStringWithoutAnswer());
+                CheckUserAnswer(example);
             }
-            while (_exampleCounter != Constants.RightAnswearsCount);
+            while (_exampleCounter != Constants.RightAnswersCount);
 
             Console.WriteLine("Победа!");
             Console.ReadKey();
@@ -88,14 +88,14 @@ namespace MultiplicationTable
         ///     Проверить ответ пользователя на пример.
         /// </summary>
         /// <param name="example"> Пример </param>
-        private static void CheckUserAnswear(Example example)
+        private static void CheckUserAnswer(Example example)
         {
-            static string operation() => ConsoleReader.ReadLine(Constants.TimeForAnswearInMillis);
+            static string operation() => ConsoleReader.ReadLine(Constants.TimeForAnswerInMillis);
             var measure = _durationMeter.Measure(operation);
-            if (int.TryParse(measure.OperationResult, out int userAnswear) && userAnswear == example.RightAnswear)
+            if (int.TryParse(measure.OperationResult, out int userAnswer) && userAnswer == example.RightAnswer)
             {
                 _exampleCounter++;
-                Console.WriteLine($"Правильно! Ещё нужно {Constants.RightAnswearsCount - _exampleCounter} правильных ответов.");
+                Console.WriteLine($"Правильно! Ещё нужно {Constants.RightAnswersCount - _exampleCounter} правильных ответов.");
                 return;
             }
 
