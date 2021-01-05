@@ -12,6 +12,8 @@ namespace MultiplicationTable.MathExample.Creators
 
         public char Code => '2';
 
+        public string ShortDescription => "и умножение, и деление";
+
         public void Clear()
         {
             _exampleCreators

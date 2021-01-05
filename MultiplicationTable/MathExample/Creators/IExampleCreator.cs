@@ -17,5 +17,15 @@ namespace MultiplicationTable.MathExample.Creators
         ///     Буквенное обозначение. Для определения конкретного класса-создателя из консоли.
         /// </summary>
         public char Code { get; }
+
+        /// <summary>
+        ///     Краткое описание, для консоли.
+        /// </summary>
+        public string ShortDescription { get; }
+
+        /// <summary>
+        ///     Подробное описание класса, с кодом и кратким описанием.
+        /// </summary>
+        public string Description => $"\t{Code} - {ShortDescription}";
     }
 }

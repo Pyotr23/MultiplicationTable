@@ -9,6 +9,8 @@ namespace MultiplicationTable.MathExample.Creators
 
         public char Code => '0';
 
+        public string ShortDescription => "умножение";
+
         public override void Add(int firstDigit, int secondDigit)
         {
             base.Add(firstDigit, secondDigit);

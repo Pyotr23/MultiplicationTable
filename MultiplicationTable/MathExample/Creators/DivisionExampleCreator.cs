@@ -12,6 +12,8 @@ namespace MultiplicationTable.MathExample.Creators
                 
         public char Code => '1';
 
+        public string ShortDescription => "деление";
+
         public void Clear()
         {
             _hashSet.Clear();

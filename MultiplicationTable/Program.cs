@@ -32,24 +32,28 @@ namespace MultiplicationTable
         /// <summary>
         ///     Получить цифру, обозначающую режим проверки знаний.
         /// </summary>
-        /// <returns> Введённый пользователем режим типа char </returns>
+        /// <returns> Введённый пользователем режим. </returns>
         private static char GetModeNumber()
         {
-            bool isModeSelectionOver;
             char readKey;
             do
             {
                 Console.WriteLine("Выберите тип примеров:");
-                Console.WriteLine("\t0 - умножение\n\t1 - деление\n\t2 - и умножение, и деление");
+                var creatorDescriptions = Constants
+                    .ExampleCreators
+                    .Select(cr => cr.Description);
+                var stringCreators = string.Join("\n", creatorDescriptions);
+                Console.WriteLine(stringCreators);
                 readKey = Console.ReadKey().KeyChar;
                 Console.WriteLine();
-                var modeNumbers = new char[] { '0', '1', '2' };
-                isModeSelectionOver = modeNumbers.Contains(readKey);
+                _exampleCreator = Constants
+                    .ExampleCreators
+                    .FirstOrDefault(cr => cr.Code == readKey);                
                 Console.Clear();
-                if (!isModeSelectionOver)
+                if (_exampleCreator == null)
                     Console.WriteLine("Тип примеров не выбран.");
             }
-            while (!isModeSelectionOver);
+            while (_exampleCreator == null);
            
             return readKey;
         }
