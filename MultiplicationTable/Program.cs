@@ -2,15 +2,25 @@
 using MultiplicationTable.MathExample.Creators;
 using MultiplicationTable.MathExample.Models;
 using System;
-using System.Linq;
 
 namespace MultiplicationTable
 {
 
     public class Program
     {        
+        /// <summary>
+        ///     Счётчик примеров.
+        /// </summary>
         private static int _exampleCounter = 0;
+
+        /// <summary>
+        ///     Измеритель длительности метода.
+        /// </summary>
         private static readonly DurationMeter _durationMeter = new DurationMeter();
+
+        /// <summary>
+        ///     Класс, создающий определённые примеры.
+        /// </summary>
         private static IExampleCreator _exampleCreator;
 
         static void Main()
@@ -30,7 +40,7 @@ namespace MultiplicationTable
         }
 
         /// <summary>
-        ///     Установить по введённому пользователем символом класс, который будет создавать примеры.
+        ///     Установить по введённому пользователем символу класс, который будет создавать примеры.
         /// </summary>
         private static void SetExampleCreatorByCode()
         {

@@ -22,7 +22,7 @@ namespace MultiplicationTable
             new DivisionExampleCreator(),
             new MixedExampleCreator()
         };
-
+                
         public static readonly ExampleCreators ExampleCreators = new ExampleCreators(_creators);
     }
 

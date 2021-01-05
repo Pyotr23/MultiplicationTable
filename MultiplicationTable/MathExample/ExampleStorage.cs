@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace MultiplicationTable.MathExample
 {
+    /// <summary>
+    ///     Хранилище приверов.
+    /// </summary>
     public class ExampleStorage
     {
         protected readonly HashSet<Tuple<int, int>> _hashSet = new HashSet<Tuple<int, int>>();

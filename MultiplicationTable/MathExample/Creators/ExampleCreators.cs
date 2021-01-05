@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace MultiplicationTable.MathExample.Creators
 {
+    /// <summary>
+    ///     Класс, управляющий коллекцией создателей примеров.
+    /// </summary>
     public class ExampleCreators
     {
         private readonly IEnumerable<IExampleCreator> _creators;
@@ -12,6 +15,9 @@ namespace MultiplicationTable.MathExample.Creators
             _creators = creators;
         }
 
+        /// <summary>
+        ///     Получить строку с описаниями создателей примеров.
+        /// </summary>
         public string GetStringWithDescriptions()
         {
             var descriptions = _creators
@@ -19,7 +25,11 @@ namespace MultiplicationTable.MathExample.Creators
             return string.Join("\n", descriptions);
         }
 
-        public IExampleCreator GetExampleCreator(char code)
+        /// <summary>
+        ///     Получить создатель примеров.
+        /// </summary>
+        /// <param name="code"> Код создателя. </param>
+         public IExampleCreator GetExampleCreator(char code)
         {
             return _creators
                 .FirstOrDefault(cr => cr.Code == code);
