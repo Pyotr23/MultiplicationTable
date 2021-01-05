@@ -1,4 +1,6 @@
-﻿using MultiplicationTable.MathExample.Models;
+﻿using MultiplicationTable.Duration;
+using MultiplicationTable.MathExample.Creators;
+using MultiplicationTable.MathExample.Models;
 using System;
 using System.Linq;
 

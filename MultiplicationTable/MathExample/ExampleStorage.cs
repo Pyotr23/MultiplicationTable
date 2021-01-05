@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MultiplicationTable.MathExample.Models
+namespace MultiplicationTable.MathExample
 {
     public class ExampleStorage
     {

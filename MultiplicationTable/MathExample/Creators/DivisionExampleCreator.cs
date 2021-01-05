@@ -1,6 +1,7 @@
-﻿using System;
+﻿using MultiplicationTable.MathExample.Models;
+using System;
 
-namespace MultiplicationTable.MathExample.Models
+namespace MultiplicationTable.MathExample.Creators
 {
     public class DivisionExampleCreator : ExampleStorage, IExampleCreator
     {

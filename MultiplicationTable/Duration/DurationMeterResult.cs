@@ -1,4 +1,4 @@
-﻿namespace MultiplicationTable
+﻿namespace MultiplicationTable.Duration
 {
     public class DurationMeterResult<T>
     {

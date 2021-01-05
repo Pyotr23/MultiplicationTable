@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MultiplicationTable.MathExample.Models;
+using System;
 
-namespace MultiplicationTable.MathExample.Models
+namespace MultiplicationTable.MathExample.Creators
 {
     public class MultiplyExampleCreator : ExampleStorage, IExampleCreator
     {

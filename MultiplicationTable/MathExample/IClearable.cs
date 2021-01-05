@@ -1,4 +1,4 @@
-﻿namespace MultiplicationTable.MathExample.Models
+﻿namespace MultiplicationTable.MathExample
 {
     public interface IClearable
     {

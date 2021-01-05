@@ -1,7 +1,8 @@
-﻿using System;
+﻿using MultiplicationTable.MathExample.Models;
+using System;
 using System.Linq;
 
-namespace MultiplicationTable.MathExample.Models
+namespace MultiplicationTable.MathExample.Creators
 {
     public class MixedExampleCreator : IExampleCreator
     {

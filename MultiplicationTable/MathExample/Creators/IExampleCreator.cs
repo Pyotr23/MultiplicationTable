@@ -1,4 +1,6 @@
-﻿namespace MultiplicationTable.MathExample.Models
+﻿using MultiplicationTable.MathExample.Models;
+
+namespace MultiplicationTable.MathExample.Creators
 {
     public interface IExampleCreator : IClearable
     {

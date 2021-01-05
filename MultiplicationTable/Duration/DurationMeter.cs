@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MultiplicationTable
+namespace MultiplicationTable.Duration
 {
     public class DurationMeter
     {
