@@ -1,4 +1,5 @@
 ﻿using MultiplicationTable.Duration;
+using MultiplicationTable.MathExample;
 using MultiplicationTable.MathExample.Creators;
 using MultiplicationTable.MathExample.Models;
 using System;
@@ -23,6 +24,8 @@ namespace MultiplicationTable
         /// </summary>
         private static IExampleCreator _exampleCreator;
 
+        private static readonly ResultStorage _resultStorage = new ResultStorage();
+
         static void Main()
         {
             SetExampleCreatorByCode();
@@ -36,6 +39,8 @@ namespace MultiplicationTable
             while (_exampleCounter != Constants.RightAnswersCount);
 
             Console.WriteLine("Победа!");
+            _resultStorage.PrintSuccess();
+            _resultStorage.PrintErrors();
             Console.ReadKey();
         }
 
@@ -94,6 +99,7 @@ namespace MultiplicationTable
             {
                 _exampleCounter++;
                 Console.WriteLine($"Правильно! Ещё нужно {Constants.RightAnswersCount - _exampleCounter} правильных ответов.");
+                _resultStorage.AddSuccess(example.ToString(), measure.Duration);
                 return;
             }
 
@@ -103,10 +109,12 @@ namespace MultiplicationTable
             if (measure.OperationResult == null)
             {
                 Console.WriteLine($"\nВремя вышло! {example}");
+                _resultStorage.AddError(example.ToString(), Constants.TimeForAnswerInMillis / 1000);
                 return;
             }
 
             Console.WriteLine($"Ошибка! {example}");
+            _resultStorage.AddError(example.ToString(), measure.Duration);
         }
     }
 }
