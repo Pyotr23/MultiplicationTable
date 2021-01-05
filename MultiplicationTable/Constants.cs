@@ -16,12 +16,14 @@ namespace MultiplicationTable
         /// </summary>
         public const int TimeForAnswerInMillis = 14000;
 
-        public static readonly List<IExampleCreator> ExampleCreators = new List<IExampleCreator>
-        { 
+        private static readonly List<IExampleCreator> _creators = new List<IExampleCreator>
+        {
             new MultiplyExampleCreator(),
             new DivisionExampleCreator(),
             new MixedExampleCreator()
         };
+
+        public static readonly ExampleCreators ExampleCreators = new ExampleCreators(_creators);
     }
 
     public class Operator

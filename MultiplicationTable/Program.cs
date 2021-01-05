@@ -15,7 +15,7 @@ namespace MultiplicationTable
 
         static void Main()
         {
-            SetExampleCreator(GetModeNumber());
+            SetExampleCreatorByCode();
 
             do
             {
@@ -30,53 +30,31 @@ namespace MultiplicationTable
         }
 
         /// <summary>
-        ///     Получить цифру, обозначающую режим проверки знаний.
+        ///     Установить по введённому пользователем символом класс, который будет создавать примеры.
         /// </summary>
-        /// <returns> Введённый пользователем режим. </returns>
-        private static char GetModeNumber()
+        private static void SetExampleCreatorByCode()
         {
-            char readKey;
             do
             {
                 Console.WriteLine("Выберите тип примеров:");
-                var creatorDescriptions = Constants
+
+                var stringWithCreatorDescriptions = Constants
                     .ExampleCreators
-                    .Select(cr => cr.Description);
-                var stringCreators = string.Join("\n", creatorDescriptions);
-                Console.WriteLine(stringCreators);
-                readKey = Console.ReadKey().KeyChar;
+                    .GetStringWithDescriptions();
+                Console.WriteLine(stringWithCreatorDescriptions);
+
+                char readKey = Console.ReadKey().KeyChar;
                 Console.WriteLine();
+
                 _exampleCreator = Constants
                     .ExampleCreators
-                    .FirstOrDefault(cr => cr.Code == readKey);                
+                    .GetExampleCreator(readKey);                
                 Console.Clear();
                 if (_exampleCreator == null)
                     Console.WriteLine("Тип примеров не выбран.");
             }
-            while (_exampleCreator == null);
-           
-            return readKey;
+            while (_exampleCreator == null);           
         }
-
-        /// <summary>
-        ///     Установить конкретный класс, который будет создавать примеры.
-        /// </summary>
-        /// <param name="mode"></param>
-        private static void SetExampleCreator(char mode)
-        {
-            switch (mode)
-            {
-                case '0':
-                    _exampleCreator = new MultiplyExampleCreator();
-                    break;
-                case '1':
-                    _exampleCreator = new DivisionExampleCreator();
-                    break;
-                case '2':
-                    _exampleCreator = new MixedExampleCreator();
-                    break;
-            }
-        }        
 
         /// <summary>
         ///     Получить сформированный пример. 
