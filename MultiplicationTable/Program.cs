@@ -54,6 +54,10 @@ namespace MultiplicationTable
             return readKey;
         }
 
+        /// <summary>
+        ///     Установить конкретный класс, который будет создавать примеры.
+        /// </summary>
+        /// <param name="mode"></param>
         private static void SetExampleCreator(char mode)
         {
             switch (mode)

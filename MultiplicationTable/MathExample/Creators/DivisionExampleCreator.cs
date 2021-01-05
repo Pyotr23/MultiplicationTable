@@ -3,13 +3,18 @@ using System;
 
 namespace MultiplicationTable.MathExample.Creators
 {
+    /// <summary>
+    ///     Класс, создающий примеры с делением.
+    /// </summary>
     public class DivisionExampleCreator : ExampleStorage, IExampleCreator
     {
-        private readonly Random _random = new Random();        
+        private readonly Random _random = new Random();
+                
+        public char Code => '1';
 
         public void Clear()
         {
-            _hashSet.Clear(); ;
+            _hashSet.Clear();
         }        
 
         public Example CreateExample()

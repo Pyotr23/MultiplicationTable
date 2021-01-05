@@ -7,6 +7,8 @@ namespace MultiplicationTable.MathExample.Creators
     {
         private readonly Random _random = new Random();
 
+        public char Code => '0';
+
         public override void Add(int firstDigit, int secondDigit)
         {
             base.Add(firstDigit, secondDigit);

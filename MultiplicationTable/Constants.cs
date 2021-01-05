@@ -1,16 +1,39 @@
-﻿using System.Collections.Generic;
+﻿using MultiplicationTable.MathExample.Creators;
+using System;
+using System.Collections.Generic;
 
 namespace MultiplicationTable
 {
     public static class Constants
     {
+        /// <summary>
+        ///     Количество правильных ответов подряд для окончания задания.
+        /// </summary>
         public const int RightAnswersCount = 15;
+
+        /// <summary>
+        ///     Время ожидания ответа, в мс.
+        /// </summary>
         public const int TimeForAnswerInMillis = 14000;
-        public static readonly Dictionary<Operator, string> OperatorSymbol = new Dictionary<Operator, string>
-        {
-            { Operator.Multiply, "*" },
-            { Operator.Division, ":"}
+
+        public static readonly IExampleCreator[] ExampleCreators = 
+        { 
+            new MultiplyExampleCreator(),
+            new DivisionExampleCreator(),
+            new MixedExampleCreator()
         };
-        public static readonly char[] ModeNumbers = { '0', '1', '2' };
+    }
+
+    public class Operator
+    {
+        private Operator(string value)
+        {
+            Value = value;
+        }
+
+        public string Value { get; private set; }
+
+        public static Operator Multiply => new Operator("*");
+        public static Operator Division => new Operator(":");
     }
 }

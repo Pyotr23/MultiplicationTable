@@ -20,7 +20,7 @@
 
         public string ToStringWithoutAnswer()
         {            
-            return $"{FirstDigit} {Constants.OperatorSymbol[Operator]} {SecondDigit} = ";
+            return $"{FirstDigit} {Operator.Value} {SecondDigit} = ";
         }
     }    
 }

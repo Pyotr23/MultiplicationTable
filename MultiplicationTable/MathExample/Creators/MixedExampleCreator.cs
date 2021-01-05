@@ -10,6 +10,8 @@ namespace MultiplicationTable.MathExample.Creators
             { new MultiplyExampleCreator(), new DivisionExampleCreator() };
         private readonly Random _random = new Random();
 
+        public char Code => '2';
+
         public void Clear()
         {
             _exampleCreators
